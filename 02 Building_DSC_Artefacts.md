@@ -27,7 +27,7 @@ C:\> Set-ExecutionPolicy -ExecutionPolicy Bypass
 The first step to kick off a build of the DSC Artefacts is to run this command:
 
 ```PowerShell
-C:\> .build.ps1 -ResolveDependency
+C:\> Build.ps1 -ResolveDependency
 ```
 
 This will pull all the dependencies from the PowerShell Gallery and save them in your project (but not in the `git` repository).
@@ -39,11 +39,11 @@ You can compare this build to the latest from AppVeyor: https://ci.appveyor.com/
 ### Pulling Dependencies from PSGallery
 
 Have a look at what is pulled from those files:
-- [Modules used during the Build process](./PSDepend.build.psd1)
-- [Modules containing the DSC Configurations (DSC Composite Resource)](./PSDepend.DSC_Configurations.psd1)
-- [Modules containing the DSC Resources](./PSDepend.DSC_Resources.psd1)
+- [Modules used during the Build process](./DSC//PSDepend.build.psd1)
+- [Modules containing the DSC Configurations (DSC Composite Resource)](./DSC/PSDepend.DscConfigurations.psd1)
+- [Modules containing the DSC Resources](./DSC/PSDepend.DscResources.psd1)
 
-> Note that for this workshop, we have added to git some files directly under the `DSC_Configurations` folder, but that's not a best practice.
+> Note that for this workshop, we have added to git some files directly under the `DscConfigurations` folder, but that's not a best practice.
 > In this `control repository`, you only want to manage trusted artefacts (built in their own pipelines) instead of directly using module sources as we're doing for this demo.
 
 If you are using the full AutomatedLab demo, you can change those PSD1s to use the private repository:
@@ -52,7 +52,7 @@ If you are using the full AutomatedLab demo, you can change those PSD1s to use t
 
 ### Building the Artefacts
 
-The DSC Artefacts are built within the [BuildOutput](./BuildOutput) folder inside of your repository.
+The DSC Artefacts are built within the [BuildOutput](./DSC/BuildOutput) folder inside of your repository. This folder will be created once the build has been executed.
 
 You will mainly be interested in the following folders:
 - DscModules: The Modules containing the resources, zipped for a DSC Pull server
